@@ -63,4 +63,7 @@ public class MinHeapCycle {
         }
         return min;
     }
+    public SetOfCycle peek(){
+        return heap[0];
+    }
 }

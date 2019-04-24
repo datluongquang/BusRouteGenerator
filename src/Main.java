@@ -1,4 +1,3 @@
-import com.sun.javafx.geom.Edge;
 
 import java.util.*;
 
@@ -17,7 +16,23 @@ public class Main {
         dummy.add(SimpleCycle.get(0));
         SetOfCycle s= new SetOfCycle(dummy);
         Q.add(s);
-        boolean[] visited= new boolean[]
+        HashMap<Cycle,Boolean> visited= new HashMap<>();
+        for(Cycle c:SimpleCycle){
+            visited.put(c,false);
+        }
+        visited.put(SimpleCycle.get(0),true);
+        while (Q.peek().numVertex()<busStops.size()){
+            s=Q.extractMin();
+            List<Cycle> adjacent= Adjv.get(s.cycleList.get(s.cycleList.size()-1));
+            for(Cycle c:adjacent){
+                if(!visited.get(c)){
+                    SetOfCycle newSet= new SetOfCycle(s.cycleList);
+                    newSet.cycleList.add(c);
+                    Q.add(newSet);
+                }
+            }
+        }
+        return Q.peek();
     }
     public List<Cycle> GenCycle(Graph g){
         List<Route> routes= g.routeList;
@@ -126,6 +141,7 @@ public class Main {
                 }
             }
         }
+        return AdjcCycle;
     }
     public boolean sharedVertex(Cycle c1,Cycle c2){
         for(BusStop b1:c1.busStopList){

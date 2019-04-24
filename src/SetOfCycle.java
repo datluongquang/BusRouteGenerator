@@ -1,5 +1,7 @@
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class SetOfCycle {
     public List<Cycle> cycleList;
@@ -30,5 +32,12 @@ public class SetOfCycle {
                 }
             }
         }
+    }
+    public int numVertex(){
+        Set<BusStop> set= new HashSet<>();
+        for(Cycle c:cycleList){
+            set.addAll(c.busStopList);
+        }
+        return set.size();
     }
 }
