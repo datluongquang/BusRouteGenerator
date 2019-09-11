@@ -39,4 +39,24 @@ public class Path {
         Path fin= new Path(finalPath);
         return fin;
     }
+    public Cycle cXor(Path p){
+        List<Route> finalPath= new ArrayList<>();
+        for(Route r: routeList){
+            if(!p.contains(r)){
+                finalPath.add(r);
+            }
+        }
+        for (Route r:p.routeList){
+            if(!finalPath.contains(r)&&!contains(r)){
+                finalPath.add(r);
+            }
+        }
+        Cycle fin= new Cycle(finalPath);
+        return fin;
+    }
+
+    @Override
+    public String toString() {
+        return busStopList.toString();
+    }
 }

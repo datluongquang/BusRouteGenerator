@@ -56,14 +56,26 @@ public class MinHeapCycle {
     }
     public SetOfCycle extractMin(){
         SetOfCycle min= heap[0];
-        heap[0]= heap[size-1];
-        size--;
-        if(size>0){
-            MinHeapify(0);
+        if(size!=0) {
+            heap[0] = heap[size - 1];
+            size--;
+            if (size > 0) {
+                MinHeapify(0);
+            }
+        }
+        else {
+            heap[0]=null;
         }
         return min;
     }
     public SetOfCycle peek(){
         return heap[0];
+    }
+    public boolean isEmpty(){
+        return size==0;
+    }
+    @Override
+    public String toString() {
+        return Arrays.toString(heap);
     }
 }
